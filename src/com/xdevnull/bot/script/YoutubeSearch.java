@@ -34,9 +34,9 @@ public class YoutubeSearch {
 	private final String API_URL = "https://www.googleapis.com/youtube/v3/search/";
 	
 	/**
-	 * YouTube LINK Suffix
+	 * YouTube LINK Prefix
 	 */
-	private final String LINK_SUFFIX = "https://youtu.be/";
+	private final String LINK_PREFIX = "https://youtu.be/";
 	
 	/**
 	 * YoutubeSearch
@@ -80,7 +80,7 @@ public class YoutubeSearch {
 			JsonArray items = object.getJsonArray("items");
 			ArrayList<String> result = new ArrayList<String>();
 			for(int i = 0; i < items.size(); i++) 
-				result.add(LINK_SUFFIX + items.getValuesAs(JsonObject.class).get(i).getJsonObject("id").getString("videoId"));
+				result.add(LINK_PREFIX + items.getValuesAs(JsonObject.class).get(i).getJsonObject("id").getString("videoId"));
 			return result.toArray(new String[result.size()]);
 		}
 		catch(Exception e) {
