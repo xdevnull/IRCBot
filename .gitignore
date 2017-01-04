@@ -1,0 +1,12 @@
+binary/*.txt
+backup/*
+ircbot.pid
+.classpath
+.project
+.settings/
+bin/*
+*.class
+binary/IRCBot.log
+binary/error.log
+config.xml
+IRCBot.Brain

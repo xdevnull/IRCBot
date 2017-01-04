@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!----
+	[IRCBot XML Configurations]
+	(Documentation soon)
+-->
+<IRCBot>
+	
+    <server></server>
+
+    <nickname alternative=""></nickname>
+
+    <port ssl=""></port>
+
+    <alternative-nickname></alternative-nickname>
+
+    <username></username>
+
+    <password></password>
+
+    <real-name></real-name>
+   
+    <channels></channels>
+    
+    
+    <!-- Optional -->
+    <brain brain-file=""></brain>
+
+    <logger></logger>
+
+    <event-dispatcher class="">
+    	<listener></listener>
+    	<listener></listener>
+    </event-dispatcher>
+
+    <youtube-search enabled="true" API_KEY="" ></youtube-search>
+
+    <trigger enabled="true" storeable="true" trigger-json-file=""></trigger>
+
+    <permission enabled="true" storeable="true" permission-json-file=""></permission>
+    
+
+</IRCBot>
