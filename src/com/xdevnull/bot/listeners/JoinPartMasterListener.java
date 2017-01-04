@@ -16,13 +16,13 @@ public class JoinPartMasterListener extends EventListener {
 		if (permission == null)
 			return;
 		if(permission.has(e.getNickname())) {
-			if(e.getMessage().startsWith("--join")) {
+			if(e.getMessage().toLowerCase().startsWith("--join")) {
 				String[] split = e.getMessage().split(" ");
 				if(split.length == 0 && split[1].charAt(0) == '#') {
 					e.getBot().sendRaw("JOIN " + split[1]);
 				}
 			}
-			else if(e.getMessage().startsWith("--part")) {
+			else if(e.getMessage().toLowerCase().startsWith("--part")) {
 				String[] split = e.getMessage().split(" ");
 				if(split.length == 0 && split[1].charAt(0) == '#') {
 					e.getBot().sendRaw("PART " + split[1]);
