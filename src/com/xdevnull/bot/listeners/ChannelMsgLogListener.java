@@ -25,7 +25,7 @@ public class ChannelMsgLogListener extends EventListener {
 		cal.setTimeInMillis(e.getSource().getTime().getTime());
 		String filename = (new SimpleDateFormat("yyyy-MM-dd")).format(cal.getTime()) + "-" + e.getChannel() + ".txt";
 		String messageTime = "[" + (new SimpleDateFormat("hh:mm:ss")).format(cal.getTime()) + "]";
-		String userAndMessage = e.getNickname() + ": " + e.getMessage();
+		String userAndMessage = "<" + e.getNickname() + "> " + e.getMessage();
 		synchronized(this) {
 			try(FileWriter fw = new FileWriter(filename, true);
 				    BufferedWriter bw = new BufferedWriter(fw);
