@@ -44,6 +44,7 @@ public class ChannelLog {
 		this.validateAndCreate(date);
 		if(this.writer != null) {
 			this.writer.println(message);
+			this.writer.flush();
 		}
 	}
 	
