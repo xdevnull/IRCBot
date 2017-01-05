@@ -1,12 +1,14 @@
 package com.xdevnull.bot.app;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.xdevnull.bot.net.Connection;
 import com.xdevnull.bot.net.ConnectionFactory;
 import com.xdevnull.bot.net.IRCMessage;
 import com.xdevnull.bot.net.InputThread;
 import com.xdevnull.bot.net.Parser;
+import com.xdevnull.bot.script.ChannelLog;
 
 /**
  * IRCBot
@@ -24,6 +26,11 @@ public class IRCBot {
 	 * IRCBot Socket Connection
 	 */
 	private Connection connection;
+	
+	/**
+	 * Channel Log
+	 */
+	private ArrayList<ChannelLog> channelLog = new ArrayList<ChannelLog>();
 	
 	/**
 	 * IRCBot Constructor
@@ -163,5 +170,13 @@ public class IRCBot {
 	 */
 	public Configuration getConfiguration() {
 		return this.configuration;
+	}
+	
+	/**
+	 * ChannelLog
+	 * @return
+	 */
+	public ArrayList<ChannelLog> getChannelLog() {
+		return this.channelLog;
 	}
 }
