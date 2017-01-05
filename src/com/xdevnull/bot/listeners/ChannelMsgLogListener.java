@@ -39,6 +39,7 @@ public class ChannelMsgLogListener extends EventListener {
 	 * Register new ChannelLog
 	 */
 	public void onChannelJoinEvent(ChannelJoinEvent e) {
+				System.out.println(e.getChannel());
 		if(e.getNickName().equals(e.getBot().getConfiguration().getNickname())) {
 			e.getBot().getChannelLog().add(new ChannelLog(e.getChannel()));
 		}
@@ -48,6 +49,7 @@ public class ChannelMsgLogListener extends EventListener {
 	 * Remove ChannelLog
 	 */
 	public void onChannelLeaveEvent(ChannelLeaveEvent e) {
+		System.out.println(e.getChannel());
 		if(e.getNickname().equals(e.getBot().getConfiguration().getNickname())) {
 			for(int i = 0; i < e.getBot().getChannelLog().size(); i++) {
 				if(e.getBot().getChannelLog().get(i).getChannel().equals(e.getChannel())) {
