@@ -20,6 +20,8 @@ public class ChannelMsgLogListener extends EventListener {
 	 * Log message
 	 */
 	public void onChannelMessageEvent(ChannelMessageEvent e) {
+		if(e == null)
+			System.out.println("Event is null");
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(e.getSource().getTime().getTime());
 		String date = (new SimpleDateFormat("yyyy-MM-dd")).format(cal.getTime());
