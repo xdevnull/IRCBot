@@ -19,6 +19,8 @@ public final class EventDispatcher {
 	 * @param e
 	 */
 	public void fire(Event e) {
+		if(e == null)
+			return;
 		for(EventListener listener : listeners)
 			if(listener != null)
 				listener.onEvent(e);
