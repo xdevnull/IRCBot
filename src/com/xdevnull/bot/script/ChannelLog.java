@@ -65,6 +65,7 @@ public class ChannelLog {
 		if(this.date.equals(date))
 			return;
 		String filename = date + "-" + this.channel + ".txt";
+		this.date = date;
 			try {
 				FileWriter fw = new FileWriter(filename, true);
 				BufferedWriter bw = new BufferedWriter(fw);
