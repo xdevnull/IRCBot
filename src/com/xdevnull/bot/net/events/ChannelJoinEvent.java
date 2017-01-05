@@ -20,7 +20,7 @@ public class ChannelJoinEvent extends Event {
 	/**
 	 * IRC Channel
 	 */
-	private String channel;
+	private final String channel;
 	
 	/**
 	 * Join Event
@@ -31,6 +31,8 @@ public class ChannelJoinEvent extends Event {
 		super(source, bot);
 		this.nickname = IRCUtil.getNickFromMask(source.getSource());
 		this.channel = source.getContent();
+		System.out.println(source);
+		System.out.println(this.channel);
 	}
 	
 	/**
