@@ -27,7 +27,7 @@ public class ChannelMsgLogListener extends EventListener {
 		String date = (new SimpleDateFormat("yyyy-MM-dd")).format(cal.getTime());
 		String filename = date + "-" + e.getChannel() + ".txt";
 		String messageTime = "[" + (new SimpleDateFormat("hh:mm:ss")).format(cal.getTime()) + "]";
-		String userAndMessage = e.getNickname() + ": " + e.getMessage();
+		String userAndMessage = "<" + e.getNickname() + "> " + e.getMessage();
 		synchronized(this) {
 			for(ChannelLog log : e.getBot().getChannelLog())
 				if(log.getChannel().equals(e.getChannel()))
