@@ -1,14 +1,13 @@
 package com.xdevnull.bot.listeners;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.xdevnull.bot.net.EventListener;
+import com.xdevnull.bot.net.events.ChannelJoinEvent;
+import com.xdevnull.bot.net.events.ChannelLeaveEvent;
 import com.xdevnull.bot.net.events.ChannelMessageEvent;
+import com.xdevnull.bot.script.ChannelLog;
 
 /**
  * Log channel message
@@ -23,18 +22,37 @@ public class ChannelMsgLogListener extends EventListener {
 	public void onChannelMessageEvent(ChannelMessageEvent e) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(e.getSource().getTime().getTime());
-		String filename = (new SimpleDateFormat("yyyy-MM-dd")).format(cal.getTime()) + "-" + e.getChannel() + ".txt";
+		String date = (new SimpleDateFormat("yyyy-MM-dd")).format(cal.getTime());
+		String filename = date + "-" + e.getChannel() + ".txt";
 		String messageTime = "[" + (new SimpleDateFormat("hh:mm:ss")).format(cal.getTime()) + "]";
-		String userAndMessage = "<" + e.getNickname() + "> " + e.getMessage();
+		String userAndMessage = e.getNickname() + ": " + e.getMessage();
 		synchronized(this) {
-			try(FileWriter fw = new FileWriter(filename, true);
-				    BufferedWriter bw = new BufferedWriter(fw);
-				    PrintWriter out = new PrintWriter(bw))
-				{
-				    out.println(messageTime + " " + userAndMessage);
-				} catch (IOException ex) {
-				    System.out.println("Unable to write log");
+			for(ChannelLog log : e.getBot().getChannelLog())
+				if(log.getChannel().equals(e.getChannel()))
+					log.log(date, messageTime + " " + userAndMessage);
+		}
+	}
+	
+	/**
+	 * Register new ChannelLog
+	 */
+	public void onChannelJoinEvent(ChannelJoinEvent e) {
+		if(e.getNickName().equals(e.getBot().getConfiguration().getNickname())) {
+			e.getBot().getChannelLog().add(new ChannelLog(e.getChannel()));
+		}
+	}
+	
+	/**
+	 * Remove ChannelLog
+	 */
+	public void onChannelLeaveEvent(ChannelLeaveEvent e) {
+		if(e.getNickname().equals(e.getBot().getConfiguration().getNickname())) {
+			for(int i = 0; i < e.getBot().getChannelLog().size(); i++) {
+				if(e.getBot().getChannelLog().get(i).getChannel().equals(e.getChannel())) {
+					e.getBot().getChannelLog().remove(i);
+					return;
 				}
+			}
 		}
 	}
 }
