@@ -30,7 +30,7 @@ public class ChannelJoinEvent extends Event {
 	public ChannelJoinEvent(IRCMessage source, IRCBot bot) {
 		super(source, bot);
 		this.nickname = IRCUtil.getNickFromMask(source.getSource());
-		this.channel = source.getContent();
+		this.channel = source.getDestination();
 		System.out.println(source);
 		System.out.println(this.channel);
 	}
